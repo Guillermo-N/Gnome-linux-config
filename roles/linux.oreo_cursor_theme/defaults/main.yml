@@ -1,0 +1,15 @@
+---
+# defaults file for linux.oreo_cursor_theme
+
+oreo_cursor_theme_repo_url: https://github.com/varlesh/oreo-cursors.git
+# default, blue, grey, orange, pink, green, purple, red, yellow
+oreo_cursor_theme_color_variant: teal
+
+
+oreo_cursor_theme_install_colours:
+  - name: teal
+    value: "#009789"
+  - name: spark_green
+    value: "#4E9A06"
+  - name: spark_light_pink
+    value: "#ff91c7"

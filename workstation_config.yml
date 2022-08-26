@@ -1,0 +1,75 @@
+---
+- name: Root setup tasks
+  hosts: localhost
+  become: true
+  become_user: root
+  vars_files:
+    - vars.yml
+  tasks:
+
+    - name: Checking support for {{ ansible_distribution }}.
+      fail: 
+        msg: The distribution you are using is not suported.
+      when: ansible_distribution not in supported_distros
+
+    - name: Installing required packages
+      yum:
+        name: "{{ packages }}"
+        state: present
+      when: ansible_distribution == "Rocky"
+
+    - name: Copying root .bash to root's home
+      copy:
+        src: files/root_bashrc
+        dest: /root/.bashrc
+        owner: root
+        group: root
+        mode: '644'
+        backup: yes
+    
+    - name: Installing PIP packages
+      pip:
+        name: psutil
+        executable: pip3
+
+    
+
+
+- name: Non root setup tasks
+  hosts: localhost
+  become: false
+  vars_files:
+    - vars.yml
+  pre_tasks:
+    - name: Copying user .bashrc to {{ ansible_user_id }}'s home
+      copy:
+        src: files/user_bashrc
+        dest: /home/{{ ansible_env.USER }}/.bashrc
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: '644'
+        backup: yes
+
+    - name: Copying user .vimrc to {{ ansible_env.USER }}'s home
+      copy:
+        src: files/user_vimrc
+        dest: /home/{{ ansible_env.USER }}/.vimrc
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: '664'
+        backup: yes
+
+  roles:
+    - linux.WhiteSur_shell_theme
+    - linux.tela_icon_theme
+    - linux.oreo_cursor_theme
+    
+  tasks:
+
+    - name: Dconf configurations
+      community.general.dconf:
+        key: "{{ item[0] }}"
+        value: "{{ item[1] }}"
+        state: present
+      loop: "{{ dconf_settings }}"
+

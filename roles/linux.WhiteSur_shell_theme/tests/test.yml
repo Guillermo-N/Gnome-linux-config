@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  #remote_user: root
+  vars:
+    runned_from_test: true
+    # default, blue, grey, orange, pink, green, purple, red, yellow
+    WhiteSur_shell_theme_color_variant: default
+  pre_tasks:
+
+    - name: Ansible delete file glob
+      find:
+        paths: ~/.themes/
+        patterns: "WhiteSur-*"
+        file_type: any
+        hidden: true
+      register: files_to_delete
+
+    - name: Ansible remove file glob
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ files_to_delete.files }}"
+      when: true
+
+    - name: Value of the folder containing theme
+      debug:
+        var: shell_theme_dconf_value
+
+    - name: Value of the color choosed 
+      debug:
+        var: WhiteSur_shell_theme_color_variant
+
+  roles:
+    - linux.WhiteSur_shell_theme

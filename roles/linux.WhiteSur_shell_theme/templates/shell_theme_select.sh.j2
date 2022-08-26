@@ -1,0 +1,10 @@
+#!/bin/bash
+
+current_time=$(date +%H)
+
+if (( current_time<={{ light_theme_time }} && current_time>={{ dark_theme_time }} )) 
+then
+	dconf write /org/gnome/desktop/interface/gtk-theme "{{ shell_theme_cronjob_dark_value }}"
+else
+	dconf write /org/gnome/desktop/interface/gtk-theme "{{ shell_theme_cronjob_light_value }}"
+fi

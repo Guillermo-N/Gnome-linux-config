@@ -1,0 +1,12 @@
+---
+# defaults file for linux.WhiteSur_shell_theme
+
+WhiteSur_shell_theme_repo_url: https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+WhiteSur_shell_theme_repo_version: 2022-02-21
+# default, blue, grey, orange, pink, green, purple, red, yellow
+WhiteSur_shell_theme_color_variant: green
+# debian, simple, arch, fedora, ubuntu, ganome, manjaro, void, simple
+WhiteSur_shell_theme_icon_variant: void
+
+light_theme_time: 8
+dark_theme_time: 23

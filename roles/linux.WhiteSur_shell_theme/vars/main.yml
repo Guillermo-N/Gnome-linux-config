@@ -1,0 +1,10 @@
+---
+# vars file for linux.WhiteSur_shell_theme
+
+shell_theme_dconf_key: "/org/gnome/desktop/interface/gtk-theme"
+shell_theme_dconf_value: "'WhiteSur-dark-solid{{ '-'+WhiteSur_shell_theme_color_variant if WhiteSur_shell_theme_color_variant != 'default' }}'"
+
+shell_theme_cronjob_dark_value: "'WhiteSur-dark-solid{{ '-'+WhiteSur_shell_theme_color_variant if WhiteSur_shell_theme_color_variant != 'default' }}'"
+shell_theme_cronjob_light_value: "'WhiteSur-light-solid{{ '-'+WhiteSur_shell_theme_color_variant if WhiteSur_shell_theme_color_variant != 'default' }}'"
+
+shell_theme_folder_name: "WhiteSur-dark-solid{{ '-'+WhiteSur_shell_theme_color_variant if WhiteSur_shell_theme_color_variant != 'default' }}"

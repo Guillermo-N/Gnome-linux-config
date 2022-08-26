@@ -1,0 +1,5 @@
+set number
+imap jj <ESC>
+
+" Configuration for ansible files
+autocmd FileType yaml setlocal ai et cuc ts=2 sw=2

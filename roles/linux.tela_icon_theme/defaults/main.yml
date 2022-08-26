@@ -1,0 +1,9 @@
+---
+# defaults file for linux.icon_theme
+
+tela_icon_theme_repo_url: https://github.com/vinceliuice/Tela-icon-theme.git
+tela_icon_theme_repo_version: 2022-02-21
+# standard, black, blue, brown, green, grey, orange, pink, purple, red, yellow, manjaro, ubuntu, nord
+tela_icon_theme_color_variant: standard
+
+

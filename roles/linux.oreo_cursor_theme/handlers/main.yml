@@ -1,0 +1,7 @@
+---
+# handlers file for linux.oreo_cursor_theme
+
+- name: Removing repo
+  ansible.builtin.file:
+    path: /tmp/oreo_cursor_theme
+    state: absent

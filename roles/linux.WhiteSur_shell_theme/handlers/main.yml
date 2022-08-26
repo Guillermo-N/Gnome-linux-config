@@ -1,0 +1,13 @@
+---
+# handlers file for linux.WhiteSur_shell_theme
+
+- name: Removing repo
+  ansible.builtin.file:
+    path: /tmp/WhiteSur_theme
+    state: absent
+
+- name: Seting on boot cronjob
+  cron:
+    name: theme_selector_onboot_cronjob
+    special_time: reboot
+    job: ~/.local/bin/shell_theme_selector.sh

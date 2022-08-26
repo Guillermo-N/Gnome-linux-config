@@ -1,0 +1,17 @@
+---
+# vars file for linux.oreo_cursor_theme
+
+cursor_theme_dconf_key: "/org/gnome/desktop/interface/cursor-theme"
+cursor_theme_dconf_value: "'oreo_{{ oreo_cursor_theme_color_variant }}_cursors'"
+
+cursor_theme_folder_name: "oreo_{{ oreo_cursor_theme_color_variant }}_cursors"
+
+cursor_size_dconf_key: "/org/gnome/desktop/interface/cursor-size"
+cursor_size_dconf_value: 12
+
+
+oreo_theme_build_dependencies:
+  - git
+  - make
+  - inskscape
+  - xcursorgen

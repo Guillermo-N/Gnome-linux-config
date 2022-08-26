@@ -1,0 +1,7 @@
+---
+# vars file for linux.icon_theme
+
+icon_theme_dconf_key: "/org/gnome/desktop/interface/icon-theme"
+icon_theme_dconf_value: "'tela-handcrafted-{{ '' if tela_icon_theme_color_variant == 'standard' else tela_icon_theme_color_variant+'-' }}dark'"
+
+icon_theme_folder_name: "tela-handcrafted-{{ '' if tela_icon_theme_color_variant == 'standard' else tela_icon_theme_color_variant+'-' }}dark"

@@ -1,0 +1,38 @@
+---
+# tasks file for linux.tela_icon_theme
+
+- name: Checkin for already build theme
+  stat:
+    path: "~/.icons/{{ icon_theme_folder_name }}"
+  register: tela_icon_theme_present
+
+- name: Desired tela icon theme
+  debug:
+    msg: The file {{ icon_theme_folder_name }} exists = {{ tela_icon_theme_present.stat.exists }}
+  when: runned_from_test
+
+- name: Building and installing theme
+  block:
+
+  - name: Clonning git repo
+    ansible.builtin.git:
+      repo: "{{ tela_icon_theme_repo_url }}"
+      dest: /tmp/Tela_icons_repo
+      clone: true
+      version: "{{ tela_icon_theme_repo_version }}"
+    notify: Removing repo
+    
+  - name: Building icon theme
+    ansible.builtin.command: /tmp/Tela_icons_repo/install.sh -d ~/.icons/ -n tela-handcrafted {{ tela_icon_theme_color_variant }}
+    changed_when: not tela_icon_theme_present.stat.exists
+    
+  when: not tela_icon_theme_present.stat.exists
+
+- name: Selecting icon theme
+  community.general.dconf:
+    key: "{{ icon_theme_dconf_key }}"
+    value: "{{ icon_theme_dconf_value }}"
+    state: present
+  
+
+  

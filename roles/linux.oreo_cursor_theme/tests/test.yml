@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  #remote_user: root
+  vars:
+    runned_from_test: true
+    # teal, spark_green, spark_light_pink
+    oreo_cursor_theme_color_variant: teal
+  pre_tasks:
+
+    - name: Ansible remove repo
+      file:
+        path: /tmp/oreo_cursor_theme
+        state: absent
+      when: true
+
+    - name: Ansible delete file glob
+      find:
+        paths: ~/.icons/
+        patterns: "oreo_*"
+        file_type: any
+        hidden: true
+      register: files_to_delete
+
+    - name: Ansible remove file glob
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ files_to_delete.files }}"
+      when: false
+
+    - name: Value of the folder containing theme
+      debug:
+        var: cursor_theme_dconf_value
+
+    - name: Value of the color choosed 
+      debug:
+        var: oreo_cursor_theme_color_variant
+
+  roles:
+    - linux.oreo_cursor_theme

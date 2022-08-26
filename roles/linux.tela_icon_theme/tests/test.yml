@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  #remote_user: root
+  vars:
+    runned_from_test: true
+    tela_icon_theme_color_variant: brown
+    # standard, black, blue, brown, green, grey, orange, pink, purple, red, yellow, manjaro, ubuntu, nord
+  pre_tasks:
+
+    - name: Ansible delete file glob
+      find:
+        paths: ~/.icons/
+        patterns: "tela-*"
+        file_type: any
+        hidden: true
+      register: files_to_delete
+
+    - name: Ansible remove file glob
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ files_to_delete.files }}"
+      when: true
+
+    - name: Value of the folder containing theme
+      debug:
+        var: icon_theme_dconf_value
+
+    - name: Value of the color choosed 
+      debug:
+        var: tela_icon_theme_color_variant
+
+  roles:
+    - linux.tela_icon_theme
