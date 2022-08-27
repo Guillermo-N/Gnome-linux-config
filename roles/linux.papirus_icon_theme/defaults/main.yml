@@ -1,0 +1,7 @@
+---
+# defaults file for linux.papirus_icon_theme
+
+papirus_icon_theme_repo_url: https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
+papirus_icon_theme_repo_version: 2022-02-21
+# standard, black, blue, brown, green, grey, orange, pink, purple, red, yellow, manjaro, ubuntu, nord
+papirus_icon_theme_color_variant: standard

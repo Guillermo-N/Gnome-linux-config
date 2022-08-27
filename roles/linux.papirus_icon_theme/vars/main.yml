@@ -1,0 +1,8 @@
+---
+# vars file for linux.papirus_icon_theme
+
+
+icon_theme_dconf_key: "/org/gnome/desktop/interface/icon-theme"
+icon_theme_dconf_value: "'papirus-handcrafted-{{ '' if papirus_icon_theme_color_variant == 'standard' else papirus_icon_theme_color_variant+'-' }}dark'"
+
+icon_theme_folder_name: "papirus-handcrafted-{{ '' if papirus_icon_theme_color_variant == 'standard' else papirus_icon_theme_color_variant+'-' }}dark"
