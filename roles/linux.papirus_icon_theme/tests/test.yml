@@ -1,5 +1,13 @@
 ---
 - hosts: localhost
-  remote_user: root
+  #remote_user: root
+  vars:
+    runned_from_test: true
+    papirus_icon_theme_color_variant: carmine #paleorange
+
+  pre_tasks:
+    - name: Removing already installed papirus
+      include_tasks: ../tasks/uninstall.yml
+
   roles:
     - linux.papirus_icon_theme

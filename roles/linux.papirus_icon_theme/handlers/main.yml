@@ -1,7 +1,2 @@
 ---
 # handlers file for linux.papirus_icon_theme
-
-- name: Removing repo
-  ansible.builtin.file:
-    path: /tmp/papirus_icons_repo
-    state: absent

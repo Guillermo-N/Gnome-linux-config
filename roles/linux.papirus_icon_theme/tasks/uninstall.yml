@@ -1,6 +1,4 @@
 ---
-# tasks file for linux.papirus_icon_theme
-
 - name: Checkin for already build theme
   stat:
     path: "~/.icons/{{ icon_theme_folder_name }}"
@@ -11,14 +9,13 @@
     msg: The file {{ icon_theme_folder_name }} exists = {{ papirus_icon_theme_present.stat.exists }}
   when: runned_from_test
 
-
-- name: Installing papirus theme
+- name: Uninstalling papirus theme
   shell:
-    cmd: wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
-  when: not papirus_icon_theme_present.stat.exists
+    cmd: wget -qO- https://git.io/papirus-icon-theme-uninstall | DESTDIR="$HOME/.icons" sh
+  become: true
+  when: papirus_icon_theme_present.stat.exists
 
-
-- name: Checkin for papirus-folders script presence
+- name: Checkin for already build theme
   stat:
     path: "~/.local/bin/papirus-folders"
   register: papirus_folders_script_present
@@ -28,14 +25,7 @@
     msg: The file papirus-folders script exists = {{ papirus_folders_script_present.stat.exists }}
   when: runned_from_test
 
-
-- name: Installing papirus-folders script
+- name: Uninstalling papirus-folders script
   shell:
-    cmd: wget -qO- https://git.io/papirus-folders-install | env PREFIX=$HOME/.local sh
-  when: not papirus_folders_script_present.stat.exists
-
-- name: Selecting color theme for the folders_color_theme
-  command:
-    cmd: papirus-folders -C {{ papirus_icon_theme_color_variant }}
-
-  
+    cmd: wget -qO- https://git.io/papirus-folders-install | env uninstall=true PREFIX=$HOME/.local sh
+  when: papirus_folders_script_present.stat.exists
