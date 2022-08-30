@@ -60,8 +60,10 @@
         backup: yes
 
   roles:
-    - linux.WhiteSur_shell_theme
-    - linux.tela_icon_theme
+    - role: linux.WhiteSur_shell_theme
+      vars:
+        WhiteSur_shell_theme_color_variant: default
+    - linux.papirus_icon_theme #linux.tela_icon_theme
     - linux.oreo_cursor_theme
     
   tasks:

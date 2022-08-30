@@ -23,7 +23,7 @@ dconf_settings:
   - ["/org/gnome/settings-daemon/plugins/media-keys/control-center", "'<Super>i'"]
   - ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings", "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"]
   - ["/org/gnome/settings-daemon/plugins/media-keys/www", "'<Super>w'"]
-  - ["/org/gnome/settings-daemon/plugins/media-keys/area-screenshot", "'<Primary><Shift>s'"]
+  - ["/org/gnome/settings-daemon/plugins/media-keys/area-screenshot", "'<Super><Shift>s'"]
   - ["/org/gnome/settings-daemon/plugins/media-keys/calculator", "'<Super>c'"]
   - ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding", "'<Super>t'"]
   - ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", "'/bin/gnome-terminal'"]
